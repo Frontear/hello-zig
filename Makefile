@@ -3,13 +3,13 @@ CFLAGS :=
 
 SRC_PATH := src
 
-.PHONY: all run docs
+.PHONY: all build docs
 
 all:
-	@${CC} build
-
-run:
 	@${CC} build run
+
+build:
+	@${CC} build
 
 docs:
 	@${CC} test -femit-docs ${SRC_PATH}/main.zig
