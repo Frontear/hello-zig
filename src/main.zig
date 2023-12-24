@@ -1,13 +1,54 @@
-// Since @import() returns a structure, we can access the specific things we need and pull them out.
+// There are no such things are multi-line comments, sucks but w/e
+
+/// This is documentation comments. It allows
+/// the zig build tool to generate documentation.
 const print = @import("std").debug.print;
+
+// Documentation comments cannot be followed by a normal comment, that will result in a compile time error
+// e.g:
+// /// Document comment
+// // Normal comment <-- this is an error
+// pub fn main() void { ... }
+//
+// However:
+// /// Document comment
+// pub fn main() void { ... } // Normal comment <-- this is fine
+//
+// There is a special type of documentation comment called top-level doc comments
+// They basically describe the context of the entire file
+// These MUST be placed at the top of the file, before ANY expressions
+// or else it will be a compile time error.
+// They look like this:
+// //! Top-level doc comment
+// //! Blah blah this file does blah
+//
+// Needless to say, both normal doc comments and top-level doc comments
+// cannot be placed at the end of a file, because there is no expression below them to document.
+//
+// Documentation can be generated via -femit-docs
+// e.g. zig test -femit-docs src/main.zig
+//      zig run -femit-docs src/main.zig
+//
+// It does not seem to work with build unfortunately.
+
+/// This is the main function documentation
+/// It does stuff
+pub fn main() void {
+    print("Hello world!\n", .{}); // note to self, this .{} is mandatory, as the function demands 2 parameters
+}
+
+// -- separator --
+
+// Since @import() returns a structure, we can access the specific things we need and pull them out.
+//const print = @import("std").debug.print;
 
 // Note that we do not mark the return type with an error possibility (no !)
 // Because there is
 // - no try statements
 // - no functions within that could possibly propagate an error (debug.print from std does not fail, its part of its implementation)
-pub fn main() void {
-    print("Hello, world!\n", .{});
-}
+//pub fn main() void {
+//    print("Hello, world!\n", .{});
+//}
 
 // -- separator --
 
