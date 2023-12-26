@@ -6,6 +6,6 @@ Zig is a fascinating new programming language that I feel sits somewhere between
 
 Take a look at `src/main.zig` for detailed comments about what Zig is doing and why its doing what its doing.
 You may run the following `make` tasks to have things happen (see the code for them in the Makefile):
-- `make`/`make all`: Build and run the Zig project
-- `make build`: Build into a compiled executable
+- `make`/`make all`: Build into a compiled executable
+- `make run`: Build and run the Zig project
 - `make docs`: Generate documentation for the program (at `docs/index.html`)
